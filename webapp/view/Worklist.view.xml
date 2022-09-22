@@ -1,0 +1,112 @@
+<mvc:View controllerName="com.mindset.juliette.v4skilltracker.controller.Worklist" 
+xmlns="sap.m" 
+xmlns:l="sap.ui.layout" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:f="sap.ui.layout.form" 
+xmlns:semantic="sap.f.semantic"
+xmlns:core="sap.ui.core">
+    <semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+        <semantic:titleHeading>
+            <Title text="{i18n>worklistTitle}" level="H2" />
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <l:VerticalLayout class="sapUiContentPadding">
+
+                <l:VerticalLayout class="sapUiSmallMargin">
+                    <f:SimpleForm
+                        id="SimpleFormToolbar">
+                        <f:toolbar>
+                            <Toolbar id="TB1">
+                                <Title id="Title1" text="New Employee" />
+                            </Toolbar>
+                        </f:toolbar>
+                        <f:content>
+                            <Label text="First Name" />
+                            <Input id="firstname" />
+
+                            <Label text="Last Name" />
+                            <Input id="lastname" />
+
+                            <Label text="Phone Number" />
+                            <Input id="phone"  />
+
+                            <Label text="Email" />
+                            <Input id="email" />
+
+                            <Label text="Role" />
+                            <Select id="role" >
+                                <items>
+                                    <core:Item text="Associate Developer" key="Associate Developer" />
+                                    <core:Item text="Lead Developer" key="Lead Developer" />
+                                    <core:Item text="Expert Developer" key="Expert Developer" />
+                                    <core:Item text="UX Designer" key="UX Designer" />
+                                    <core:Item text="Delivery Lead" key="Delivery Lead" />
+                                </items>
+                            </Select>
+
+                            <Button text="Save" press=".saveEmployee"/>
+
+                            
+                        </f:content>
+                    </f:SimpleForm>
+                </l:VerticalLayout>
+
+                <Table
+                    id="employeeTable"
+                    width="auto"
+                    items="{
+                    path: '/Employees',
+                    sorter: {
+                        path: 'Emp_Id',
+                        descending: false
+                    }
+                }"
+                    noDataText="{worklistView>/tableNoDataText}"
+                    busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                    growing="true"
+                    growingScrollToLoad="true"
+                    updateFinished=".onUpdateFinished"
+                    alternateRowColors="true"
+                >
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title id="tableHeader" text="{worklistView>/worklistTableTitle}" level="H3" />
+                            <ToolbarSpacer />
+                            <SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search=".onSearch">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                                </layoutData>
+                            </SearchField>
+                            <Button text="Add Employee" press=".onAddEmployee" type="Default" />
+                        </OverflowToolbar>
+                    </headerToolbar>
+
+                    <columns>
+                        <Column id="nameColumn">
+                            <Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle" />
+                        </Column>
+                        <Column id="roleColumn">
+                            <Text text="{i18n>tableRoleColumnTitle}" id="roleColumnTitle" />
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem type="Navigation" press=".onPress">
+                            <cells>
+                                <ObjectIdentifier title="{FirstName} {LastName}" />
+                            </cells>
+                            <cells>
+                                <ObjectIdentifier title="{Role}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </l:VerticalLayout>
+        </semantic:content>
+
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress" />
+        </semantic:sendEmailAction>
+    </semantic:SemanticPage>
+</mvc:View>
