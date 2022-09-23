@@ -1,10 +1,4 @@
-<mvc:View controllerName="com.mindset.juliette.v4skilltracker.controller.Worklist" 
-xmlns="sap.m" 
-xmlns:l="sap.ui.layout" 
-xmlns:mvc="sap.ui.core.mvc" 
-xmlns:f="sap.ui.layout.form" 
-xmlns:semantic="sap.f.semantic"
-xmlns:core="sap.ui.core">
+<mvc:View controllerName="com.mindset.juliette.v4skilltracker.controller.Worklist" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:semantic="sap.f.semantic" xmlns:core="sap.ui.core">
     <semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
         <semantic:titleHeading>
             <Title text="{i18n>worklistTitle}" level="H2" />
@@ -12,46 +6,6 @@ xmlns:core="sap.ui.core">
 
         <semantic:content>
             <l:VerticalLayout class="sapUiContentPadding">
-
-                <l:VerticalLayout class="sapUiSmallMargin">
-                    <f:SimpleForm
-                        id="SimpleFormToolbar">
-                        <f:toolbar>
-                            <Toolbar id="TB1">
-                                <Title id="Title1" text="New Employee" />
-                            </Toolbar>
-                        </f:toolbar>
-                        <f:content>
-                            <Label text="First Name" />
-                            <Input id="firstname" />
-
-                            <Label text="Last Name" />
-                            <Input id="lastname" />
-
-                            <Label text="Phone Number" />
-                            <Input id="phone"  />
-
-                            <Label text="Email" />
-                            <Input id="email" />
-
-                            <Label text="Role" />
-                            <Select id="role" >
-                                <items>
-                                    <core:Item text="Associate Developer" key="Associate Developer" />
-                                    <core:Item text="Lead Developer" key="Lead Developer" />
-                                    <core:Item text="Expert Developer" key="Expert Developer" />
-                                    <core:Item text="UX Designer" key="UX Designer" />
-                                    <core:Item text="Delivery Lead" key="Delivery Lead" />
-                                </items>
-                            </Select>
-
-                            <Button text="Save" press=".saveEmployee"/>
-
-                            
-                        </f:content>
-                    </f:SimpleForm>
-                </l:VerticalLayout>
-
                 <Table
                     id="employeeTable"
                     width="auto"
@@ -78,7 +32,7 @@ xmlns:core="sap.ui.core">
                                     <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
                                 </layoutData>
                             </SearchField>
-                            <Button text="Add Employee" press=".onAddEmployee" type="Default" />
+                            <Button text="Add Employee" press=".onAddEmployee" />
                         </OverflowToolbar>
                     </headerToolbar>
 
@@ -108,5 +62,8 @@ xmlns:core="sap.ui.core">
         <semantic:sendEmailAction>
             <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress" />
         </semantic:sendEmailAction>
+        <!-- <mvc:dependents>
+            <core:Fragment id="dialogFragment" fragmentName="com.mindset.juliette.v4skilltracker.fragment.EmployeeForm" type="XML" />
+        </mvc:dependents> -->
     </semantic:SemanticPage>
 </mvc:View>

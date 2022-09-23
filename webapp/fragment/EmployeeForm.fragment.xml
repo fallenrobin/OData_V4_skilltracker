@@ -1,0 +1,51 @@
+<core:FragmentDefinition 
+xmlns="sap.m" 
+xmlns:l="sap.ui.layout" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:f="sap.ui.layout.form" 
+xmlns:core="sap.ui.core">
+
+<Dialog id="employeeForm">
+
+<l:VerticalLayout class="sapUiSmallMargin">
+    <f:SimpleForm id="SimpleFormToolbar">
+        <f:toolbar>
+            <Toolbar id="TB1">
+                <Title id="Title1" text="New Employee" />
+            </Toolbar>
+        </f:toolbar>
+        <f:content>
+            <Label text="First Name" />
+            <Input id="firstname" />
+
+            <Label text="Last Name" />
+            <Input id="lastname" />
+
+            <Label text="Phone Number" />
+            <Input id="phone" />
+
+            <Label text="Email" />
+            <Input id="email" />
+
+            <Label text="Role" />
+            <Select id="role">
+                <items>
+                    <core:Item text="Associate Developer" key="Associate Developer" />
+                    <core:Item text="Lead Developer" key="Lead Developer" />
+                    <core:Item text="Expert Developer" key="Expert Developer" />
+                    <core:Item text="UX Designer" key="UX Designer" />
+                    <core:Item text="Delivery Lead" key="Delivery Lead" />
+                </items>
+            </Select>
+
+            <Button text="Save" press=".saveEmployee" />
+            <Button text="Close" press=".closeEmployeeForm" />
+
+        </f:content>
+    </f:SimpleForm>
+</l:VerticalLayout>
+
+
+</Dialog>
+
+</core:FragmentDefinition>

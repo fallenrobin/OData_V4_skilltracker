@@ -106,48 +106,37 @@ sap.ui.define([
 
         },
 
-        onAddEmployee : function () {
-            if (!this.oFixedSizeDialog) {
-                this.oFixedSizeDialog = new Dialog({
-                    title: "Available Products",
-                    contentWidth: "550px",
-                    contentHeight: "300px",
-                    // content: new List({
-                    //     items: {
-                    //         path: "/ProductCollection",
-                    //         template: new StandardListItem({
-                    //             title: "{Name}",
-                    //             counter: "{Quantity}"
-                    //         })
-                    //     }
-                    // }),
-                    endButton: new Button({
-                        text: "Close",
-                        press: function () {
-                            this.oFixedSizeDialog.close();
-                        }.bind(this)
-                    })
-                });
+        onAddEmployee : function (oEvent) {
+            var oDialog = oEvent.getSource();
+            var oView = this.getView();
 
-                //to get access to the controller's model
-                this.getView().addDependent(this.oFixedSizeDialog);
+            if (!this._employeeForm) {
+                this._employeeForm = sap.ui.xmlfragment(
+                    "com.mindset.juliette.v4skilltracker.fragment.EmployeeForm",
+                    this
+                );
+                this.getView().addDependent(this._employeeForm)
             }
-
-            this.oFixedSizeDialog.open();
+            this._employeeForm.open(oDialog)
         },
 
         saveEmployee: function (oEvent) {
             var oList = this.byId("employeeTable")
             var oBinding = oList.getBinding('items')
             var oContext = oBinding.create({
-                "FirstName": this.byId("firstname").getProperty("value"),
-                "LastName": this.byId("lastname").getProperty("value"),
-                "Phone": this.byId("phone").getProperty("value"),
-                "Email": this.byId("email").getProperty("value"),
-                "Role": this.byId("role").getProperty("selectedKey")
+                "FirstName": sap.ui.getCore().byId("firstname").getProperty("value"),
+                "LastName": sap.ui.getCore().byId("lastname").getProperty("value"),
+                "Phone": sap.ui.getCore().byId("phone").getProperty("value"),
+                "Email": sap.ui.getCore().byId("email").getProperty("value"),
+                "Role": sap.ui.getCore().byId("role").getProperty("selectedKey")
             })
         },
 
+        closeEmployeeForm: function (oEvent) {
+            var oDialog = oEvent.getSource();
+            this.getView().addDependent(this._employeeForm);
+            this._employeeForm.close(oDialog);
+        },
 
         /**
          * Event handler for refresh event. Keeps filter, sort
