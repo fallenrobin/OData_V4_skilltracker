@@ -45,16 +45,16 @@
                                 <Column>
                                     <Text text="Proficiency" />
                                 </Column>
-                                <!-- <Column>
-                                    <Text text="Date" />
-                                </Column> -->
+                                <Column>
+                                    <Text text="Skill type" />
+                                </Column>
                             </columns>
                             <items>
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
-                                        <Text text="{_Skill/Skillname}" targetType="any" wrapping="false" />
+                                        <Text text="{_Skill/SkillName}" targetType="any" wrapping="false" />
                                         <RatingIndicator id="RI_S" maxValue="5" editable="false" value="{Proficiency}" iconHovered="sap-icon://lightbulb" iconSelected="sap-icon://lightbulb" iconUnselected="sap-icon://lightbulb" iconSize="16px" tooltip="Rating Tooltip" />
-                                        <!-- <Text text="{date}" wrapping="false" /> -->
+                                        <Text text="{_Skill/SkillType}" wrapping="false" />
                                     </cells>
                                 </ColumnListItem>
                             </items>

@@ -114,7 +114,7 @@ sap.ui.define([
             var oDialog = oEvent.getSource();
             var oView = this.getView();
 
-            if (!this._employeeForm) {
+            if (!this._skillForm) {
                 this._skillForm = sap.ui.xmlfragment(
                     "com.mindset.juliette.v4skilltracker.fragment.skillForm",
                     this
@@ -125,22 +125,28 @@ sap.ui.define([
         },
 
         saveSkill: function (oEvent) {
-            var oList = this.byId("skillForm")
+            var oList = this.byId("skillMenu")
             var oBinding = oList.getBinding('items')
+            // FIXME: How to getProperty for all fields but bind to EmpSkills2 path?
             var oContext = oBinding.create({
-                "FirstName": sap.ui.getCore().byId("firstname").getProperty("value"),
-                "LastName": sap.ui.getCore().byId("lastname").getProperty("value"),
-                "Phone": sap.ui.getCore().byId("phone").getProperty("value"),
-                "Email": sap.ui.getCore().byId("email").getProperty("value"),
-                "Role": sap.ui.getCore().byId("role").getProperty("selectedKey")
+                "SkillId": sap.ui.getCore().byId("SkillId").getProperty("value"),
+                "Proficiency": sap.ui.getCore().byId("proficiency").getProperty("value"),
+                "Emp_Id": "00000000-0000-0000-0000-000000000000"
+                    // FIXME: how to get Emp_Id?? 
+                    // this concept, or other means? 'var oViewModel = this.getModel("objectView")
+
+                // "Last-changed-at": sap.ui.getCore().byId().getProperty(),
             })
-        }
+
+            MessageToast.show("Skill added!");
+
+        },
 
         closeSkillForm: function (oEvent) {
             var oDialog = oEvent.getSource();
             this.getView().addDependent(this._skillForm);
             this._skillForm.close(oDialog);
-        },
+        }
 
 
     });
