@@ -109,7 +109,40 @@ sap.ui.define([
                     oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
                 oViewModel.setProperty("/shareSendEmailMessage",
                     oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
+        },
+        onAddSkill: function (oEvent) {
+            var oDialog = oEvent.getSource();
+            var oView = this.getView();
+
+            if (!this._employeeForm) {
+                this._skillForm = sap.ui.xmlfragment(
+                    "com.mindset.juliette.v4skilltracker.fragment.skillForm",
+                    this
+                );
+                this.getView().addDependent(this._skillForm)
+            }
+            this._skillForm.open(oDialog)
+        },
+
+        saveSkill: function (oEvent) {
+            var oList = this.byId("skillForm")
+            var oBinding = oList.getBinding('items')
+            var oContext = oBinding.create({
+                "FirstName": sap.ui.getCore().byId("firstname").getProperty("value"),
+                "LastName": sap.ui.getCore().byId("lastname").getProperty("value"),
+                "Phone": sap.ui.getCore().byId("phone").getProperty("value"),
+                "Email": sap.ui.getCore().byId("email").getProperty("value"),
+                "Role": sap.ui.getCore().byId("role").getProperty("selectedKey")
+            })
         }
+
+        closeSkillForm: function (oEvent) {
+            var oDialog = oEvent.getSource();
+            this.getView().addDependent(this._skillForm);
+            this._skillForm.close(oDialog);
+        },
+
+
     });
 
 });
