@@ -50,7 +50,7 @@
                                 <Column>
                                     <Text text="Skill type" />
                                 </Column>
-                                <!-- TODO: add column for 'Last-changed-at'?... -->
+                                <!-- TODO: add column for 'Last-changed-at' (not critical) -->
 
                             </columns>
                             <items>
