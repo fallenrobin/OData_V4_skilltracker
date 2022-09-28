@@ -1,30 +1,72 @@
-<mvc:View
-    controllerName="com.mindset.juliette.v4skilltracker.controller.Object"
-    xmlns="sap.m"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:semantic="sap.f.semantic">
+<mvc:View controllerName="com.mindset.juliette.v4skilltracker.controller.Object" displayBlock="true" xmlns:layout="sap.ui.layout" xmlns:uxap="sap.uxap" xmlns:f="sap.f" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+    <uxap:ObjectPageLayout showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
+        <uxap:headerContent>
+            <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                <items>
+                    <Link text="{Email}" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false" subtle="false" />
+                </items>
+                <layoutData />
+            </VBox>
+            <Label design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+        </uxap:headerContent>
+        <uxap:headerTitle>
+            <uxap:ObjectPageHeader objectTitle="{FirstName} {LastName}" objectSubtitle="{Role}" headerDesign="Light" objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
+                <uxap:actions>
+                    <Button text="" type="Transparent" icon="sap-icon://edit" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                </uxap:actions>
+                <uxap:breadCrumbsLinks />
+                <uxap:navigationBar />
+            </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+        <uxap:sections>
+            <uxap:ObjectPageSection showTitle="true" title="Page Section Title" titleUppercase="true" visible="true">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Skills" mode="Expanded">
+                        <Table 
+                        id="table" 
+                        mode="MultiSelect" 
+                        items="{
+                                path : '_EmpSkills2',
+                                parameters: {
+                                    expand: '_Skill'
+                                }
+                                }">
+                                <!-- FIXME: How to target Emp_Id? 
+                                    How to deal with fact that this is a fragment?...  -->
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Title text="My Skills" level="H2" />
+                                    <ToolbarSpacer />
+                                    <Button text="Add Skill" icon="sap-icon://add" type="Transparent" press=".onAddSkill" />
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="Skill name" />
+                                </Column>
+                                <Column>
+                                    <Text text="Proficiency" />
+                                </Column>
+                                <Column>
+                                    <Text text="Skill type" />
+                                </Column>
+                                <!-- TODO: add column for 'Last-changed-at' (not critical) -->
 
-    <semantic:SemanticPage
-        id="page"
-        headerPinnable="false"
-        toggleHeaderOnTitleClick="false"
-        busy="{objectView>/busy}"
-        busyIndicatorDelay="{objectView>/delay}">
-
-        <semantic:titleHeading>
-            <Title
-                text="{FirstName} {LastName}"
-                level="H2"/>
-        </semantic:titleHeading>
-
-        <semantic:headerContent>
-            <ObjectNumber />
-        </semantic:headerContent>
-
-        <semantic:sendEmailAction>
-            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-        </semantic:sendEmailAction>
-
-    </semantic:SemanticPage>
-
+                            </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <cells>
+                                        <Text text="{_Skill/SkillName}" targetType="any" wrapping="false" />
+                                        <RatingIndicator id="RI_S" maxValue="5" editable="false" value="{Proficiency}" iconHovered="sap-icon://lightbulb" iconSelected="sap-icon://lightbulb" iconUnselected="sap-icon://lightbulb" iconSize="16px" tooltip="Rating Tooltip" />
+                                        <Text text="{_Skill/SkillType}" wrapping="false" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer />
+    </uxap:ObjectPageLayout>
 </mvc:View>

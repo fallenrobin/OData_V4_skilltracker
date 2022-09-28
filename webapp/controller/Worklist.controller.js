@@ -30,8 +30,6 @@ sap.ui.define([
             // Model used to manipulate control states
             oViewModel = new JSONModel({
                 worklistTableTitle : this.getResourceBundle().getText("worklistTableTitle"),
-                shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
-                shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
                 tableNoDataText : this.getResourceBundle().getText("tableNoDataText")
             });
             this.setModel(oViewModel, "worklistView");
@@ -86,26 +84,27 @@ sap.ui.define([
             history.go(-1);
         },
 
-
-        onSearch : function (oEvent) {
-            if (oEvent.getParameters().refreshButtonPressed) {
-                // Search field's 'refresh' button has been pressed.
-                // This is visible if you select any main list item.
-                // In this case no new search is triggered, we only
-                // refresh the list binding.
-                this.onRefresh();
-            } else {
-                var aTableSearchState = [];
-                var sQuery = oEvent.getParameter("query");
-
-                if (sQuery && sQuery.length > 0) {
-                    aTableSearchState = [new Filter("Emp_Id", FilterOperator.Contains, sQuery)];
-                }
-                this._applySearch(aTableSearchState);
+        //TODO: combine FirstName and LastName somehow? 
+        //Filter bar search
+        onSearch: function () {
+            var aFilter = [];
+            var sQueryFirstName = this.getModel("worklistView").getData().FirstName;
+            var sQueryLastName = this.getModel("worklistView").getData().LastName;
+            var sQueryRole = this.getModel("worklistView").getData().Role;
+            if (sQueryFirstName) {
+                aFilter.push(new Filter("FirstName", FilterOperator.Contains, sQueryFirstName));
+            } else if (sQueryLastName) {
+                aFilter.push(new Filter("LastName", FilterOperator.Contains, sQueryLastName));
             }
-
+            else if (sQueryRole) {
+                aFilter.push(new Filter("Role", FilterOperator.Contains, sQueryRole));
+            }
+            // filter binding
+            var oList = this.byId("employeeTable");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilter);
         },
-
+        // Opens dialog with Employee Form
         onAddEmployee : function (oEvent) {
             var oDialog = oEvent.getSource();
             var oView = this.getView();
@@ -120,6 +119,7 @@ sap.ui.define([
             this._employeeForm.open(oDialog)
         },
 
+        // POST new employee to service
         saveEmployee: function (oEvent) {
             var oList = this.byId("employeeTable")
             var oBinding = oList.getBinding('items')
@@ -132,7 +132,7 @@ sap.ui.define([
             })
         },
 
-        closeEmployeeForm: function (oEvent) {
+        closeEmployeeDialog: function (oEvent) {
             var oDialog = oEvent.getSource();
             this.getView().addDependent(this._employeeForm);
             this._employeeForm.close(oDialog);

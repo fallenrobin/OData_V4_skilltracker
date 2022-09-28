@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Dialog id="skillForm">
+        <l:VerticalLayout class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormToolbar">
+                <f:toolbar>
+                    <Toolbar id="TB1">
+                        <Title id="skillDialog" text="New Skill" />
+                    </Toolbar>
+                </f:toolbar>
+                <f:content>
+
+                <Label text="Select a skill" />
+                    <Select 
+                    id="skillMenu"
+                    items="{
+                    path: '/Skills',
+                    sorter: {
+                        path: 'SkillType',
+                        descending: true
+                    }
+                    }"
+                    >
+                        <!-- TODO: Implement logic that will exclude Skills previously 
+                            selected by the user? -->
+                        <items>
+                            <core:Item key="{SkillId}" text="{SkillName}"/>
+                        </items>
+                    </Select>
+                    <Label text="Rate your proficiency" />
+                    <RatingIndicator id="proficiency" maxValue="5" editable="true" value="0" iconHovered="sap-icon://lightbulb" iconSelected="sap-icon://lightbulb" iconUnselected="sap-icon://lightbulb" iconSize="16px" tooltip="Rating Tooltip" />
+
+
+                    <Button text="Save" press=".saveSkill" />
+                    <Button text="Close" press=".closeSkillDialog" />
+                </f:content>
+            </f:SimpleForm>
+        </l:VerticalLayout>
+    </Dialog>
+</core:FragmentDefinition>

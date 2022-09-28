@@ -14,6 +14,7 @@ xmlns:core="sap.ui.core">
                 <Title id="Title1" text="New Employee" />
             </Toolbar>
         </f:toolbar>
+        <!-- TODO: if time: validation  -->
         <f:content>
             <Label text="First Name" />
             <Input id="firstname" />
@@ -39,7 +40,7 @@ xmlns:core="sap.ui.core">
             </Select>
 
             <Button text="Save" press=".saveEmployee" />
-            <Button text="Close" press=".closeEmployeeForm" />
+            <Button text="Close" press=".closeEmployeeDialog" />
 
         </f:content>
     </f:SimpleForm>

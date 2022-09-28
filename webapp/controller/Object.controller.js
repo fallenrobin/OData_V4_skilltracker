@@ -109,7 +109,47 @@ sap.ui.define([
                     oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
                 oViewModel.setProperty("/shareSendEmailMessage",
                     oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
+        },
+        // Opens Skill dialog
+        onAddSkill: function (oEvent) {
+            var oDialog = oEvent.getSource();
+            var oView = this.getView();
+
+            if (!this._skillForm) {
+                this._skillForm = sap.ui.xmlfragment(
+                    "com.mindset.juliette.v4skilltracker.fragment.skillForm",
+                    this
+                );
+                this.getView().addDependent(this._skillForm)
+            }
+            this._skillForm.open(oDialog)
+        },
+        // POST new Employee Skill (to 'EmployeeSkills')
+        saveSkill: function (oEvent) {
+            var oList = this.byId("skillMenu")
+            var oBinding = oList.getBinding('items')
+            // FIXME: How to getProperty for all fields but bind to EmpSkills2 path?
+            var oContext = oBinding.create({
+                "SkillId": sap.ui.getCore().byId("SkillId").getProperty("value"),
+                "Proficiency": sap.ui.getCore().byId("proficiency").getProperty("value"),
+                "Emp_Id": "00000000-0000-0000-0000-000000000000"
+                    // FIXME: how to get Emp_Id?? 
+                    // This concept, or other means? 'var oViewModel = this.getModel("objectView")
+
+                // TODO: "Last-changed-at": sap.ui.getCore().byId().getProperty(),
+            })
+
+            MessageToast.show("Skill added!");
+
+        },
+
+        closeSkillDialog: function (oEvent) {
+            var oDialog = oEvent.getSource();
+            this.getView().addDependent(this._skillForm);
+            this._skillForm.close(oDialog);
         }
+
+
     });
 
 });
