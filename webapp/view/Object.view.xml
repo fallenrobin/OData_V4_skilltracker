@@ -1,5 +1,12 @@
-<mvc:View controllerName="com.mindset.juliette.v4skilltracker.controller.Object" displayBlock="true" xmlns:layout="sap.ui.layout" xmlns:uxap="sap.uxap" xmlns:f="sap.f" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
-    <uxap:ObjectPageLayout showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
+<mvc:View 
+controllerName="com.mindset.juliette.v4skilltracker.controller.Object" 
+displayBlock="true" 
+xmlns:layout="sap.ui.layout" 
+xmlns:uxap="sap.uxap" 
+xmlns:f="sap.f" xmlns="sap.m" 
+xmlns:mvc="sap.ui.core.mvc">
+    
+<uxap:ObjectPageLayout showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
         <uxap:headerContent>
             <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
                 <items>
@@ -11,12 +18,16 @@
         </uxap:headerContent>
         <uxap:headerTitle>
             <uxap:ObjectPageHeader objectTitle="{FirstName} {LastName}" objectSubtitle="{Role}" headerDesign="Light" objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
-                <uxap:actions>
-                    <Button text="" type="Transparent" icon="sap-icon://edit" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+            <!-- <Avatar displaySize="XL" class="sapUiSmallMargin" />     -->
+            <uxap:actions>
+                    <Button text="Edit" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                    <Button text="Delete" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
+
                 </uxap:actions>
                 <uxap:breadCrumbsLinks />
                 <uxap:navigationBar />
             </uxap:ObjectPageHeader>
+
         </uxap:headerTitle>
         <uxap:sections>
             <uxap:ObjectPageSection showTitle="true" title="Page Section Title" titleUppercase="true" visible="true">

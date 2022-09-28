@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core">
+    <Dialog id="deleteDialog" title="Delete Employee">
+        <layout:HorizontalLayout>
+            <layout:VerticalLayout class="sapUiContentPadding">
+                <Text text="Are you sure you want to delete this employee?" />
+            </layout:VerticalLayout>
+        </layout:HorizontalLayout>
+        <beginButton>
+            <Button text="Delete" type="Critical" press="onDelete" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press=".onCloseDeleteDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

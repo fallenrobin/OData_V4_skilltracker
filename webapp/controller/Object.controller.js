@@ -143,6 +143,28 @@ sap.ui.define([
 
         },
 
+        onOpenDeleteDialog: function () {
+            this.byId("deleteDialog").open();
+        },
+
+        onDeleteEmployee: function (oEvent) {
+            // var oRouter = this.getRouter();
+            // var employeeContext = this.getView("objectView").byId("page").getBindingContext();
+
+            // employeeContext.delete("$auto").then(function (oEvent) {
+            //     oRouter.navTo("worklist", {});
+            //     this.byId("deleteDialog").close();
+            // })
+
+            // MessageToast.show("Employee deleted!");
+            alert('clicked delete')
+        },
+
+        onCloseDeleteDialog: function () {
+            this.byId("deleteDialog").close();
+        },
+
+
         closeSkillDialog: function (oEvent) {
             var oDialog = oEvent.getSource();
             this.getView().addDependent(this._skillForm);
