@@ -143,11 +143,25 @@ sap.ui.define([
 
         },
 
-        onOpenDeleteDialog: function () {
-            this.byId("deleteDialog").open();
+        // FIXME: delete dialog
+        onOpenDeleteDialog: function (oEvent) {
+            // alert('clicked delete')
+            var oDialog = oEvent.getSource();
+            var oView = this.getView();
+
+            if (!this._deleteDialog) {
+                this._deleteDialog = sap.ui.xmlfragment(
+                    "com.mindset.juliette.v4skilltracker.fragment.deleteDialog",
+                    this
+                );
+                this.getView().addDependent(this._deleteDialog)
+            }
+            this._deleteDialog.open(oDialog)
         },
 
         onDeleteEmployee: function (oEvent) {
+
+            //From Curtis' project, for reference:
             // var oRouter = this.getRouter();
             // var employeeContext = this.getView("objectView").byId("page").getBindingContext();
 
@@ -157,11 +171,12 @@ sap.ui.define([
             // })
 
             // MessageToast.show("Employee deleted!");
-            alert('clicked delete')
         },
 
-        onCloseDeleteDialog: function () {
-            this.byId("deleteDialog").close();
+        onCloseDeleteDialog: function (oEvent) {
+            var oDialog = oEvent.getSource();
+            this.getView().addDependent(this._deleteDialog);
+            this._deleteDialog.close(oDialog);
         },
 
 

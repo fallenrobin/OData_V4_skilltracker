@@ -6,7 +6,7 @@
             </layout:VerticalLayout>
         </layout:HorizontalLayout>
         <beginButton>
-            <Button text="Delete" type="Critical" press="onDelete" />
+            <Button text="Delete" type="Critical" press="onDeleteEmployee" />
         </beginButton>
         <endButton>
             <Button text="Cancel" press=".onCloseDeleteDialog" />

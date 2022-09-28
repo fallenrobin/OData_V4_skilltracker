@@ -21,7 +21,8 @@ xmlns:mvc="sap.ui.core.mvc">
             <!-- <Avatar displaySize="XL" class="sapUiSmallMargin" />     -->
             <uxap:actions>
                     <Button text="Edit" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
-                    <Button text="Delete" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                    <!-- FIXME: Delete button -->
+                    <Button text="Delete" press=".onOpenDeleteDialog" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
 
                 </uxap:actions>
                 <uxap:breadCrumbsLinks />
