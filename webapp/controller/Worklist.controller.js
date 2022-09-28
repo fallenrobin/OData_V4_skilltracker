@@ -105,7 +105,7 @@ sap.ui.define([
             }
 
         },
-
+        // Opens dialog with Employee Form
         onAddEmployee : function (oEvent) {
             var oDialog = oEvent.getSource();
             var oView = this.getView();
@@ -120,6 +120,7 @@ sap.ui.define([
             this._employeeForm.open(oDialog)
         },
 
+        // POST new employee to service
         saveEmployee: function (oEvent) {
             var oList = this.byId("employeeTable")
             var oBinding = oList.getBinding('items')
@@ -132,7 +133,7 @@ sap.ui.define([
             })
         },
 
-        closeEmployeeForm: function (oEvent) {
+        closeEmployeeDialog: function (oEvent) {
             var oDialog = oEvent.getSource();
             this.getView().addDependent(this._employeeForm);
             this._employeeForm.close(oDialog);

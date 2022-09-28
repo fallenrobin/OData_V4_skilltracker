@@ -110,6 +110,7 @@ sap.ui.define([
                 oViewModel.setProperty("/shareSendEmailMessage",
                     oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
         },
+        // Opens Skill dialog
         onAddSkill: function (oEvent) {
             var oDialog = oEvent.getSource();
             var oView = this.getView();
@@ -123,7 +124,7 @@ sap.ui.define([
             }
             this._skillForm.open(oDialog)
         },
-
+        // POST new Employee Skill (to 'EmployeeSkills')
         saveSkill: function (oEvent) {
             var oList = this.byId("skillMenu")
             var oBinding = oList.getBinding('items')
@@ -133,16 +134,16 @@ sap.ui.define([
                 "Proficiency": sap.ui.getCore().byId("proficiency").getProperty("value"),
                 "Emp_Id": "00000000-0000-0000-0000-000000000000"
                     // FIXME: how to get Emp_Id?? 
-                    // this concept, or other means? 'var oViewModel = this.getModel("objectView")
+                    // This concept, or other means? 'var oViewModel = this.getModel("objectView")
 
-                // "Last-changed-at": sap.ui.getCore().byId().getProperty(),
+                // TODO: "Last-changed-at": sap.ui.getCore().byId().getProperty(),
             })
 
             MessageToast.show("Skill added!");
 
         },
 
-        closeSkillForm: function (oEvent) {
+        closeSkillDialog: function (oEvent) {
             var oDialog = oEvent.getSource();
             this.getView().addDependent(this._skillForm);
             this._skillForm.close(oDialog);

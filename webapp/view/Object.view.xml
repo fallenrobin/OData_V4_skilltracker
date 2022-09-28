@@ -31,6 +31,8 @@
                                     expand: '_Skill'
                                 }
                                 }">
+                                <!-- FIXME: How to target Emp_Id? 
+                                    How to deal with fact that this is a fragment?...  -->
                             <headerToolbar>
                                 <Toolbar>
                                     <Title text="My Skills" level="H2" />
@@ -48,6 +50,8 @@
                                 <Column>
                                     <Text text="Skill type" />
                                 </Column>
+                                <!-- TODO: add column for 'Last-changed-at'?... -->
+
                             </columns>
                             <items>
                                 <ColumnListItem vAlign="Middle">

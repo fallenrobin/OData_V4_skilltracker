@@ -20,8 +20,8 @@
                     }
                     }"
                     >
-                        <!-- TODO: How to implement logic that 
-                            will exclude Skills previously selected by the user? -->
+                        <!-- TODO: Implement logic that will exclude Skills previously 
+                            selected by the user? -->
                         <items>
                             <core:Item key="{SkillId}" text="{SkillName}"/>
                         </items>
@@ -31,7 +31,7 @@
 
 
                     <Button text="Save" press=".saveSkill" />
-                    <Button text="Close" press=".closeSkillForm" />
+                    <Button text="Close" press=".closeSkillDialog" />
                 </f:content>
             </f:SimpleForm>
         </l:VerticalLayout>
