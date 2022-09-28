@@ -88,11 +88,15 @@ sap.ui.define([
         //Filter bar search
         onSearch: function () {
             var aFilter = [];
-            var sQueryName = this.getModel("worklistView").getData().FirstName;
+            var sQueryFirstName = this.getModel("worklistView").getData().FirstName;
+            var sQueryLastName = this.getModel("worklistView").getData().LastName;
             var sQueryRole = this.getModel("worklistView").getData().Role;
-            if (sQueryName) {
-                aFilter.push(new Filter("FirstName", FilterOperator.Contains, sQueryName));
-            } else if (sQueryRole) {
+            if (sQueryFirstName) {
+                aFilter.push(new Filter("FirstName", FilterOperator.Contains, sQueryFirstName));
+            } else if (sQueryLastName) {
+                aFilter.push(new Filter("LastName", FilterOperator.Contains, sQueryLastName));
+            }
+            else if (sQueryRole) {
                 aFilter.push(new Filter("Role", FilterOperator.Contains, sQueryRole));
             }
             // filter binding
