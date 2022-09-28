@@ -2,8 +2,10 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
-    "../model/formatter"
-], function (BaseController, JSONModel, History, formatter) {
+    "../model/formatter",
+    "sap/m/MessageToast"
+
+], function (BaseController, JSONModel, History, formatter, MessageToast) {
     "use strict";
 
     return BaseController.extend("com.mindset.juliette.v4skilltracker.controller.Object", {
@@ -143,7 +145,7 @@ sap.ui.define([
 
         },
 
-        // FIXME: delete dialog
+        
         onOpenDeleteDialog: function (oEvent) {
             // alert('clicked delete')
             var oDialog = oEvent.getSource();
@@ -158,19 +160,18 @@ sap.ui.define([
             }
             this._deleteDialog.open(oDialog)
         },
-
+        // FIXME: how to update Worklist View after delete??
         onDeleteEmployee: function (oEvent) {
-
             //From Curtis' project, for reference:
-            // var oRouter = this.getRouter();
-            // var employeeContext = this.getView("objectView").byId("page").getBindingContext();
+            var oRouter = this.getRouter();
+            var employeeContext = this.getView("objectView").byId("page").getBindingContext();
 
-            // employeeContext.delete("$auto").then(function (oEvent) {
-            //     oRouter.navTo("worklist", {});
-            //     this.byId("deleteDialog").close();
-            // })
+            employeeContext.delete("$auto").then(function (oEvent) {
+                oRouter.navTo("worklist", {});
+                this.byId("deleteDialog").close();
+            })
 
-            // MessageToast.show("Employee deleted!");
+            MessageToast.show("Employee deleted!");
         },
 
         onCloseDeleteDialog: function (oEvent) {

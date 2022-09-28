@@ -6,7 +6,7 @@ xmlns:uxap="sap.uxap"
 xmlns:f="sap.f" xmlns="sap.m" 
 xmlns:mvc="sap.ui.core.mvc">
     
-<uxap:ObjectPageLayout showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
+<uxap:ObjectPageLayout id="page" showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
         <uxap:headerContent>
             <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
                 <items>
@@ -21,7 +21,6 @@ xmlns:mvc="sap.ui.core.mvc">
             <!-- <Avatar displaySize="XL" class="sapUiSmallMargin" />     -->
             <uxap:actions>
                     <Button text="Edit" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
-                    <!-- FIXME: Delete button -->
                     <Button text="Delete" press=".onOpenDeleteDialog" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
 
                 </uxap:actions>
