@@ -128,16 +128,27 @@ sap.ui.define([
         },
         // POST new Employee Skill (to 'EmployeeSkills')
         saveSkill: function (oEvent) {
-            var oList = this.byId("skillMenu")
-            var oBinding = oList.getBinding('items')
-            // FIXME: How to getProperty for all fields but bind to EmpSkills2 path?
-            var oContext = oBinding.create({
-                "SkillId": sap.ui.getCore().byId("SkillId").getProperty("value"),
-                "Proficiency": sap.ui.getCore().byId("proficiency").getProperty("value"),
-                "Emp_Id": "00000000-0000-0000-0000-000000000000"
-                    // FIXME: how to get Emp_Id?? 
-                    // This concept, or other means? 'var oViewModel = this.getModel("objectView")
+            //getElementBinding
+            //context binding
 
+            // var oModel = this.getView().getModel();
+            // var aBindings = oModel.getAllBindings();
+            // var employeeListBinding = oModel.bindList('/Employees')
+            // var oContext = employeeListBinding.create({
+            //     "FirstName": this.getView().byId("FirstName").getProperty("value"),
+            //     "LastName": this.getView().byId("LastName").getProperty("value")
+            var oView = this.getView()
+            var oModel = this.getView().getModel();
+            var aBindings = oModel.getAllBindings();
+            var empSkillsBinding = oModel.bindList('/EmpSkills2')
+            var oEmployee = oView.getBindingContext().getObject()
+            var sEmployeeId = oEmployee.Emp_Id
+            var oContext = empSkillsBinding.create({
+                "SkillId": sap.ui.getCore().byId("skillId").getProperty("key"),
+                "Proficiency": sap.ui.getCore().byId("proficiency").getValue(),
+                "Empid": sEmployeeId
+                // "SkillId": "16ae3afe-a727-1eed-8ed6-e948edede9e4",
+                // "Proficiency": "1"
                 // TODO: "Last-changed-at": sap.ui.getCore().byId().getProperty(),
             })
 
@@ -162,7 +173,6 @@ sap.ui.define([
         },
         // FIXME: how to update Worklist View after delete??
         onDeleteEmployee: function (oEvent) {
-            //From Curtis' project, for reference:
             var oRouter = this.getRouter();
             var employeeContext = this.getView("objectView").byId("page").getBindingContext();
 
@@ -170,7 +180,6 @@ sap.ui.define([
                 oRouter.navTo("worklist", {});
                 this.byId("deleteDialog").close();
             })
-
             MessageToast.show("Employee deleted!");
         },
 
