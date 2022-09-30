@@ -23,7 +23,7 @@
                         <!-- TODO: Implement logic that will exclude Skills previously 
                             selected by the user? -->
                         <items>
-                            <core:Item id="skillId" key="{SkillId}" text="{SkillName}"/>
+                            <core:Item id="skillIdSelect" key="{SkillId}" text="{SkillName}"/>
                         </items>
                     </Select>
                     <Label text="Rate your proficiency" />

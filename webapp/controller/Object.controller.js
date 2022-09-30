@@ -25,6 +25,7 @@ sap.ui.define([
             // detail page shows busy indication immediately so there is no break in
             // between the busy indication for loading the view's meta data
             var oViewModel = new JSONModel({
+                    editMode: false,
                     busy : true,
                     delay : 0
                 });
@@ -112,6 +113,15 @@ sap.ui.define([
                 oViewModel.setProperty("/shareSendEmailMessage",
                     oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
         },
+
+        onEditEmployee: function () {
+            var oViewModel = this.getModel("objectView")
+            oViewModel.setProperty("/editMode", true);
+            var oObjectPage = this.getView().byId("employeeDetailPage"),
+                bCurrentShowFooterState = oObjectPage.getShowFooter();
+            oObjectPage.setShowFooter(!bCurrentShowFooterState);
+        },
+
         // Opens Skill dialog
         onAddSkill: function (oEvent) {
             var oDialog = oEvent.getSource();
@@ -128,15 +138,6 @@ sap.ui.define([
         },
         // POST new Employee Skill (to 'EmployeeSkills')
         saveSkill: function (oEvent) {
-            //getElementBinding
-            //context binding
-
-            // var oModel = this.getView().getModel();
-            // var aBindings = oModel.getAllBindings();
-            // var employeeListBinding = oModel.bindList('/Employees')
-            // var oContext = employeeListBinding.create({
-            //     "FirstName": this.getView().byId("FirstName").getProperty("value"),
-            //     "LastName": this.getView().byId("LastName").getProperty("value")
             var oView = this.getView()
             var oModel = this.getView().getModel();
             var aBindings = oModel.getAllBindings();
@@ -144,16 +145,16 @@ sap.ui.define([
             var oEmployee = oView.getBindingContext().getObject()
             var sEmployeeId = oEmployee.Emp_Id
             var oContext = empSkillsBinding.create({
-                "SkillId": sap.ui.getCore().byId("skillId").getProperty("key"),
-                "Proficiency": sap.ui.getCore().byId("proficiency").getValue(),
+
+                "SkillId": sap.ui.getCore().byId("skillMenu").getSelectedItem().mProperties.key,
+                "Proficiency": sap.ui.getCore().byId("proficiency").getValue().toString(),
                 "Empid": sEmployeeId
-                // "SkillId": "16ae3afe-a727-1eed-8ed6-e948edede9e4",
-                // "Proficiency": "1"
                 // TODO: "Last-changed-at": sap.ui.getCore().byId().getProperty(),
             })
 
             MessageToast.show("Skill added!");
-
+            // oTable = sap.ui.getCore().byId("empSkillTable");
+            this.closeSkillDialog();
         },
 
         
@@ -181,6 +182,8 @@ sap.ui.define([
                 this.byId("deleteDialog").close();
             })
             MessageToast.show("Employee deleted!");
+            this._skillForm.close(oDialog);
+
         },
 
         onCloseDeleteDialog: function (oEvent) {
@@ -190,10 +193,10 @@ sap.ui.define([
         },
 
 
-        closeSkillDialog: function (oEvent) {
-            var oDialog = oEvent.getSource();
+        closeSkillDialog: function () {
+            // var oDialog = oEvent.getSource();
             this.getView().addDependent(this._skillForm);
-            this._skillForm.close(oDialog);
+            this._skillForm.close();
         }
 
 

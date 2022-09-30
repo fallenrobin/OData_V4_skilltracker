@@ -6,7 +6,7 @@ xmlns:uxap="sap.uxap"
 xmlns:f="sap.f" xmlns="sap.m" 
 xmlns:mvc="sap.ui.core.mvc">
     
-<uxap:ObjectPageLayout id="page" showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
+<uxap:ObjectPageLayout id="employeeDetailPage" showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
         <uxap:headerContent>
             <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
                 <items>
@@ -20,7 +20,7 @@ xmlns:mvc="sap.ui.core.mvc">
             <uxap:ObjectPageHeader objectTitle="{FirstName} {LastName}" objectSubtitle="{Role}" headerDesign="Light" objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
             <!-- <Avatar displaySize="XL" class="sapUiSmallMargin" />     -->
             <uxap:actions>
-                    <Button text="Edit" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                    <Button text="Edit" press="onEditEmployee" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
                     <Button text="Delete" press=".onOpenDeleteDialog" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
 
                 </uxap:actions>
@@ -34,7 +34,7 @@ xmlns:mvc="sap.ui.core.mvc">
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="Skills" mode="Expanded">
                         <Table 
-                        id="table" 
+                        id="empSkillTable" 
                         mode="MultiSelect" 
                         items="{
                                 path : '_EmpSkills2',
@@ -68,7 +68,7 @@ xmlns:mvc="sap.ui.core.mvc">
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
                                         <Text text="{_Skill/SkillName}" targetType="any" wrapping="false" />
-                                        <RatingIndicator id="RI_S" maxValue="5" editable="false" value="{Proficiency}" iconHovered="sap-icon://lightbulb" iconSelected="sap-icon://lightbulb" iconUnselected="sap-icon://lightbulb" iconSize="16px" tooltip="Rating Tooltip" />
+                                        <RatingIndicator id="RI_S" maxValue="5" editable="{objectView>/editMode}" value="{Proficiency}" iconHovered="sap-icon://lightbulb" iconSelected="sap-icon://lightbulb" iconUnselected="sap-icon://lightbulb" iconSize="16px" tooltip="Rating Tooltip" />
                                         <Text text="{_Skill/SkillType}" wrapping="false" />
                                     </cells>
                                 </ColumnListItem>
@@ -78,6 +78,10 @@ xmlns:mvc="sap.ui.core.mvc">
                 </uxap:subSections>
             </uxap:ObjectPageSection>
         </uxap:sections>
-        <uxap:footer />
+        <uxap:footer>
+            <OverflowToolbar>
+                <Text text="I am a footer"/>
+            </OverflowToolbar>
+        </uxap:footer>
     </uxap:ObjectPageLayout>
 </mvc:View>
