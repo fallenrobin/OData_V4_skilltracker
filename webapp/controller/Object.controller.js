@@ -122,6 +122,12 @@ sap.ui.define([
             oObjectPage.setShowFooter(!bCurrentShowFooterState);
         },
 
+        closeFooter: function () {
+            var oObjectPage = this.getView().byId("employeeDetailPage"),
+                bCurrentShowFooterState = oObjectPage.getShowFooter();
+            oObjectPage.setShowFooter(!bCurrentShowFooterState);
+        },
+
         // Opens Skill dialog
         onAddSkill: function (oEvent) {
             var oDialog = oEvent.getSource();

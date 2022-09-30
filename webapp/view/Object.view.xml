@@ -82,7 +82,7 @@ xmlns:mvc="sap.ui.core.mvc">
             <OverflowToolbar>
                 <ToolbarSpacer/>
                 <Button id="saveEdit" text="Save" type="Accept" press="onSaveEdit" />
-                <Button id="cancelEdit" text="Cancel" press="onCancelEdit" />
+                <Button id="cancelEdit" text="Cancel" press="closeFooter" />
             </OverflowToolbar>
         </uxap:footer>
     </uxap:ObjectPageLayout>
