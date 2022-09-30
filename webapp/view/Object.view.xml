@@ -35,7 +35,7 @@ xmlns:mvc="sap.ui.core.mvc">
                     <uxap:ObjectPageSubSection title="Skills" mode="Expanded">
                         <Table 
                         id="empSkillTable" 
-                        mode="MultiSelect" 
+                        mode="SingleSelect" 
                         items="{
                                 path : '_EmpSkills2',
                                 parameters: {
@@ -49,6 +49,8 @@ xmlns:mvc="sap.ui.core.mvc">
                                     <Title text="My Skills" level="H2" />
                                     <ToolbarSpacer />
                                     <Button text="Add Skill" icon="sap-icon://add" type="Transparent" press=".onAddSkill" />
+                                    <Button icon="sap-icon://delete" type="Transparent" press="onDeleteSkill" />
+
                                 </Toolbar>
                             </headerToolbar>
                             <columns>

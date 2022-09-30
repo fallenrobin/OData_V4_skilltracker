@@ -132,9 +132,9 @@ sap.ui.define([
             var employeesBinding = oModel.bindList('/Employees')
             var oEmployee = oView.getBindingContext().getObject()
             var sEmployeeId = oEmployee.Emp_Id
-            var oContext = empSkillsBinding.create({
+            var oContext = empSkillsBinding.update({
 
-                "SkillId": sap.ui.getCore().byId("skillMenu").getSelectedItem().mProperties.key,
+                "SkillId": sap.ui.getCore().byId("skillData").getValue(),
                 "Proficiency": sap.ui.getCore().byId("proficiency").getValue().toString(),
                 "Empid": sEmployeeId
             })
@@ -223,6 +223,18 @@ sap.ui.define([
             // var oDialog = oEvent.getSource();
             this.getView().addDependent(this._skillForm);
             this._skillForm.close();
+        }, 
+
+        onDeleteSkill: function () {
+            var oSelected = this.byId("empSkillTable").getSelectedItem();
+
+            if (oSelected) {
+                oSelected.getBindingContext().delete("$auto").then(function () {
+                    MessageToast.show("Skill deleted!");
+                }.bind(this), function (oError) {
+                    MessageBox.error(oError.message);
+                });
+            }
         }
 
 
