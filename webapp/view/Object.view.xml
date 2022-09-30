@@ -20,7 +20,7 @@ xmlns:mvc="sap.ui.core.mvc">
             <uxap:ObjectPageHeader objectTitle="{FirstName} {LastName}" objectSubtitle="{Role}" headerDesign="Light" objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
             <!-- <Avatar displaySize="XL" class="sapUiSmallMargin" />     -->
             <uxap:actions>
-                    <Button text="Edit" press="onEditEmployee" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                    <Button text="Edit" press="onEdit" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
                     <Button text="Delete" press=".onOpenDeleteDialog" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
 
                 </uxap:actions>
@@ -67,7 +67,7 @@ xmlns:mvc="sap.ui.core.mvc">
                             <items>
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
-                                        <Text text="{_Skill/SkillName}" targetType="any" wrapping="false" />
+                                        <Text id="skillData" value="_Skill/SkillId" text="{_Skill/SkillName}" targetType="any" wrapping="false" />
                                         <RatingIndicator id="RI_S" maxValue="5" editable="{objectView>/editMode}" value="{Proficiency}" iconHovered="sap-icon://lightbulb" iconSelected="sap-icon://lightbulb" iconUnselected="sap-icon://lightbulb" iconSize="16px" tooltip="Rating Tooltip" />
                                         <Text text="{_Skill/SkillType}" wrapping="false" />
                                     </cells>

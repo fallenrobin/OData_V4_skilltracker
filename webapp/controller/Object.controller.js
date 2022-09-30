@@ -114,12 +114,32 @@ sap.ui.define([
                     oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
         },
 
-        onEditEmployee: function () {
+        onEdit: function () {
+            //sets edit mode for applicable fields
             var oViewModel = this.getModel("objectView")
             oViewModel.setProperty("/editMode", true);
+            //opens footer
             var oObjectPage = this.getView().byId("employeeDetailPage"),
                 bCurrentShowFooterState = oObjectPage.getShowFooter();
             oObjectPage.setShowFooter(!bCurrentShowFooterState);
+        },
+
+        onSaveEdit: function () {
+            var oView = this.getView()
+            var oModel = this.getView().getModel();
+            var aBindings = oModel.getAllBindings();
+            var empSkillsBinding = oModel.bindList('/EmpSkills2')
+            var employeesBinding = oModel.bindList('/Employees')
+            var oEmployee = oView.getBindingContext().getObject()
+            var sEmployeeId = oEmployee.Emp_Id
+            var oContext = empSkillsBinding.create({
+
+                "SkillId": sap.ui.getCore().byId("skillMenu").getSelectedItem().mProperties.key,
+                "Proficiency": sap.ui.getCore().byId("proficiency").getValue().toString(),
+                "Empid": sEmployeeId
+            })
+
+            this.closeFooter();
         },
 
         closeFooter: function () {
