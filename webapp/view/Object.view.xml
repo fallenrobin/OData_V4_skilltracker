@@ -80,7 +80,9 @@ xmlns:mvc="sap.ui.core.mvc">
         </uxap:sections>
         <uxap:footer>
             <OverflowToolbar>
-                <Text text="I am a footer"/>
+                <ToolbarSpacer/>
+                <Button id="saveEdit" text="Save" type="Accept" press="onSaveEdit" />
+                <Button id="cancelEdit" text="Cancel" press="onCancelEdit" />
             </OverflowToolbar>
         </uxap:footer>
     </uxap:ObjectPageLayout>
