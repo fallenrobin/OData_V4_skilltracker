@@ -227,12 +227,14 @@ sap.ui.define([
             this._skillForm.close();
         }, 
 
-        onDeleteSkill: function () {
+        onDeleteSkill: function (oEvent) {
             // alert('clicked delete skill!')
-            var oSelected = this.byId("empSkillTable").getSelectedItem();
+            // var oSelected = this.byId("empSkillTable").getSelectedItem();
+            var oSelectedItem = oEvent.getParameter("listItem");
 
-            if (oSelected) {
-                oSelected.getBindingContext().delete("$auto").then(function () {
+
+            if (oSelectedItem) {
+                oSelectedItem.getBindingContext().delete("$auto").then(function () {
                     MessageToast.show("Skill deleted!");
                 }.bind(this), function (oError) {
                     MessageBox.error(oError.message);
