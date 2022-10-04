@@ -134,7 +134,7 @@ sap.ui.define([
             var sEmployeeId = oEmployee.Emp_Id
             var oContext = empSkillsBinding.update({
 
-                "SkillId": sap.ui.getCore().byId("skillData").getValue(),
+                "SkillId": sap.ui.getCore().byId("skillData").getProperty().customData,
                 "Proficiency": sap.ui.getCore().byId("proficiency").getValue().toString(),
                 "Empid": sEmployeeId
             })
@@ -150,9 +150,6 @@ sap.ui.define([
 
         // Opens Skill dialog
         onAddSkill: function (oEvent) {
-            var oDialog = oEvent.getSource();
-            var oView = this.getView();
-
             if (!this._skillForm) {
                 this._skillForm = sap.ui.xmlfragment(
                     "com.mindset.juliette.v4skilltracker.fragment.skillForm",
@@ -160,7 +157,7 @@ sap.ui.define([
                 );
                 this.getView().addDependent(this._skillForm)
             }
-            this._skillForm.open(oDialog)
+            this._skillForm.open()
         },
         // POST new Employee Skill (to 'EmployeeSkills')
         saveSkill: function (oEvent) {
@@ -222,6 +219,7 @@ sap.ui.define([
         closeSkillDialog: function () {
             // var oDialog = oEvent.getSource();
             this.getView().addDependent(this._skillForm);
+            // this.refreshSkills();
             this._skillForm.close();
         }, 
 
@@ -235,6 +233,13 @@ sap.ui.define([
                     MessageBox.error(oError.message);
                 });
             }
+        },
+
+        refreshSkills: function () {
+            alert("refresh")
+            var oSkillTable = sap.ui.getCore().byId("empSkillTable")
+            var oModel = this.getView().getModel();
+            oSkillTable.bindRows('/EmpSkills2');
         }
 
 
