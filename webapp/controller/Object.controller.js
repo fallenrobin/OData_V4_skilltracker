@@ -27,7 +27,8 @@ sap.ui.define([
             var oViewModel = new JSONModel({
                     editMode: false,
                     busy : true,
-                    delay : 0
+                    delay: 0,
+                    deleteMode: "None",
                 });
             this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "objectView");
@@ -118,6 +119,7 @@ sap.ui.define([
             //sets edit mode for applicable fields
             var oViewModel = this.getModel("objectView")
             oViewModel.setProperty("/editMode", true);
+            oViewModel.setProperty("/deleteMode", "Delete");
             //opens footer
             var oObjectPage = this.getView().byId("employeeDetailPage"),
                 bCurrentShowFooterState = oObjectPage.getShowFooter();
@@ -134,7 +136,7 @@ sap.ui.define([
             var sEmployeeId = oEmployee.Emp_Id
             var oContext = empSkillsBinding.update({
 
-                "SkillId": sap.ui.getCore().byId("skillData").getProperty().customData,
+                "SkillId": sap.ui.getCore().byId("skillData").getProperty(),
                 "Proficiency": sap.ui.getCore().byId("proficiency").getValue().toString(),
                 "Empid": sEmployeeId
             })
@@ -143,6 +145,8 @@ sap.ui.define([
         },
 
         closeFooter: function () {
+            var oViewModel = this.getModel("objectView")
+            oViewModel.setProperty("/deleteMode", "None");
             var oObjectPage = this.getView().byId("employeeDetailPage"),
                 bCurrentShowFooterState = oObjectPage.getShowFooter();
             oObjectPage.setShowFooter(!bCurrentShowFooterState);
@@ -224,6 +228,7 @@ sap.ui.define([
         }, 
 
         onDeleteSkill: function () {
+            // alert('clicked delete skill!')
             var oSelected = this.byId("empSkillTable").getSelectedItem();
 
             if (oSelected) {
