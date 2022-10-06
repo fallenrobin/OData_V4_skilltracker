@@ -20,7 +20,7 @@ xmlns:mvc="sap.ui.core.mvc">
             <uxap:ObjectPageHeader objectTitle="{FirstName} {LastName}" objectSubtitle="{Role}" headerDesign="Light" objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
             <!-- <Avatar displaySize="XL" class="sapUiSmallMargin" />     -->
             <uxap:actions>
-                    <Button text="Edit" press="onEdit" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                    <Button text="Edit" enabled="{= ${objectView>/editMode} ? false : true }" press="onEdit" type="Transparent" icon="sap-icon://edit"  width="auto" visible="true" iconDensityAware="false" />
                     <Button text="Delete employee" press=".onOpenDeleteDialog" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
                 </uxap:actions>
                 <uxap:navigationBar />
@@ -31,9 +31,10 @@ xmlns:mvc="sap.ui.core.mvc">
             <uxap:ObjectPageSection showTitle="true" title="Page Section Title" titleUppercase="true" visible="true">
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection title="Skills" mode="Expanded">
-                        <Table 
+                        <!-- use expression binding w editMode -->
+                    <Table 
                         id="empSkillTable" 
-                        mode="{objectView>/deleteMode}" 
+                        mode="{= ${objectView>/editMode} ? 'Delete' : 'None' }" 
                         delete="onDeleteSkill"
                         items="{
                                 path : '_EmpSkills2',

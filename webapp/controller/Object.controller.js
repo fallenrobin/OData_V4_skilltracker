@@ -151,7 +151,7 @@ sap.ui.define([
 
         closeFooter: function () {
             var oViewModel = this.getModel("objectView")
-            oViewModel.setProperty("/deleteMode", "None");
+            oViewModel.setProperty("/editMode", false);
             var oObjectPage = this.getView().byId("employeeDetailPage"),
                 bCurrentShowFooterState = oObjectPage.getShowFooter();
             oObjectPage.setShowFooter(!bCurrentShowFooterState);
