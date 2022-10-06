@@ -117,9 +117,14 @@ sap.ui.define([
 
         onEdit: function () {
             //sets edit mode for applicable fields
-            var oViewModel = this.getModel("objectView")
-            oViewModel.setProperty("/editMode", true);
-            oViewModel.setProperty("/deleteMode", "Delete");
+            var oViewModel = this.getModel("objectView");
+            if (!oViewModel.getProperty("/editMode")) {
+                oViewModel.setProperty("/editMode", true)
+                oViewModel.setProperty("/deleteMode", "Delete")
+            } else {
+                oViewModel.setProperty("/editMode", false)
+                oViewModel.setProperty("/deleteMode", "None");
+            }
             //opens footer
             var oObjectPage = this.getView().byId("employeeDetailPage"),
                 bCurrentShowFooterState = oObjectPage.getShowFooter();
@@ -180,7 +185,11 @@ sap.ui.define([
             })
 
             MessageToast.show("Skill added!");
+            // TODO: do i need getCore because fragment is not really on the view??
             // oTable = sap.ui.getCore().byId("empSkillTable");
+            
+            // var oTable = this.getView().byId("empSkillTable");
+            // oTable.setModel(oModel, "myModel");
             this.closeSkillDialog();
         },
 
@@ -197,7 +206,6 @@ sap.ui.define([
                 );
                 this.getView().addDependent(this._deleteDialog)
             }
-            this._deleteDialog.open(oDialog)
         },
         // FIXME: how to update Worklist View after delete??
         onDeleteEmployee: function (oEvent) {

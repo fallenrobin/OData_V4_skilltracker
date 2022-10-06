@@ -21,8 +21,7 @@ xmlns:mvc="sap.ui.core.mvc">
             <!-- <Avatar displaySize="XL" class="sapUiSmallMargin" />     -->
             <uxap:actions>
                     <Button text="Edit" press="onEdit" type="Transparent" icon="sap-icon://edit"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
-                    <Button text="Delete" press=".onOpenDeleteDialog" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
-
+                    <Button text="Delete employee" press=".onOpenDeleteDialog" type="Transparent" icon="sap-icon://delete"  width="auto" enabled="true" visible="true" iconDensityAware="false" />
                 </uxap:actions>
                 <uxap:navigationBar />
             </uxap:ObjectPageHeader>
@@ -47,8 +46,6 @@ xmlns:mvc="sap.ui.core.mvc">
                                     <Title text="My Skills" level="H2" />
                                     <ToolbarSpacer />
                                     <Button text="Add Skill" icon="sap-icon://add" type="Transparent" press=".onAddSkill" />
-                                    <Button icon="sap-icon://delete" type="Transparent" press="onDeleteSkill" />
-
                                 </Toolbar>
                             </headerToolbar>
                             <columns>
