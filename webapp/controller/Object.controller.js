@@ -118,13 +118,7 @@ sap.ui.define([
         onEdit: function () {
             //sets edit mode for applicable fields
             var oViewModel = this.getModel("objectView");
-            if (!oViewModel.getProperty("/editMode")) {
-                oViewModel.setProperty("/editMode", true)
-                oViewModel.setProperty("/deleteMode", "Delete")
-            } else {
-                oViewModel.setProperty("/editMode", false)
-                oViewModel.setProperty("/deleteMode", "None");
-            }
+            oViewModel.setProperty("/editMode", true)
             //opens footer
             var oObjectPage = this.getView().byId("employeeDetailPage"),
                 bCurrentShowFooterState = oObjectPage.getShowFooter();
@@ -132,20 +126,8 @@ sap.ui.define([
         },
 
         onSaveEdit: function () {
-            var oView = this.getView()
-            var oModel = this.getView().getModel();
-            var aBindings = oModel.getAllBindings();
-            var empSkillsBinding = oModel.bindList('/EmpSkills2')
-            var employeesBinding = oModel.bindList('/Employees')
-            var oEmployee = oView.getBindingContext().getObject()
-            var sEmployeeId = oEmployee.Emp_Id
-            var oContext = empSkillsBinding.update({
-
-                "SkillId": sap.ui.getCore().byId("skillData").getProperty(),
-                "Proficiency": sap.ui.getCore().byId("proficiency").getValue().toString(),
-                "Empid": sEmployeeId
-            })
-
+            var oViewModel = this.getModel("objectView")
+            oViewModel.setProperty("/editMode", false);
             this.closeFooter();
         },
 
