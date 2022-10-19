@@ -17,7 +17,7 @@ xmlns:mvc="sap.ui.core.mvc">
             <Label design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
         </uxap:headerContent>
         <uxap:headerTitle>
-            <uxap:ObjectPageHeader objectTitle="{FirstName} {LastName}" objectSubtitle="{Role}" headerDesign="Light" objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
+            <uxap:ObjectPageHeader objectTitle="{FirstName} {LastName}" objectSubtitle="{Role}" objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
             <!-- <Avatar displaySize="XL" class="sapUiSmallMargin" />     -->
             <uxap:actions>
                     <Button text="Edit" enabled="{= ${objectView>/editMode} ? false : true }" press="onEdit" type="Transparent" icon="sap-icon://edit"  width="auto" visible="true" iconDensityAware="false" />
@@ -65,7 +65,7 @@ xmlns:mvc="sap.ui.core.mvc">
                             <items>
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
-                                        <Text id="skillData" customData="_Skill/SkillId" text="{_Skill/SkillName}" targetType="any" wrapping="false" />
+                                        <Text id="skillData" customData="_Skill/SkillId" text="{_Skill/SkillName}" wrapping="false" />
                                         <RatingIndicator id="RI_S" maxValue="5" editable="{objectView>/editMode}" value="{Proficiency}" iconHovered="sap-icon://lightbulb" iconSelected="sap-icon://lightbulb" iconUnselected="sap-icon://lightbulb" iconSize="16px" tooltip="Rating Tooltip" />
                                         <Text text="{_Skill/SkillType}" wrapping="false" />
                                     </cells>

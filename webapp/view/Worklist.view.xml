@@ -7,7 +7,7 @@
 
         <semantic:headerContent>
             <!-- TODO: Is is possible to search both FirstName and LastName at the same time? -->
-            <fb:FilterBar 
+            <!-- <fb:FilterBar 
                 id="filterbar" 
                 search="onSearch" 
                 useToolbar="true">
@@ -28,7 +28,11 @@
                         </fb:control>
                     </fb:FilterGroupItem>
                 </fb:filterGroupItems>
-            </fb:FilterBar>
+            </fb:FilterBar> -->
+            <Toolbar>
+                <SearchField liveChange="onSearch" width="30%" />
+            </Toolbar>
+
         </semantic:headerContent>
 
 
