@@ -28,7 +28,6 @@ sap.ui.define([
                     editMode: false,
                     busy : true,
                     delay: 0,
-                    deleteMode: "None",
                 });
             this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "objectView");

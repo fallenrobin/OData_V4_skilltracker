@@ -6,33 +6,9 @@
         </semantic:titleHeading>
 
         <semantic:headerContent>
-            <!-- TODO: Is is possible to search both FirstName and LastName at the same time? -->
-            <!-- <fb:FilterBar 
-                id="filterbar" 
-                search="onSearch" 
-                useToolbar="true">
-                <fb:filterGroupItems>
-                    <fb:FilterGroupItem groupName="searchFirstName" groupTitle="Group1" name="First Name" label="First Name" labelTooltip="Search by first name" visibleInFilterBar="true">
-                        <fb:control>
-                            <Input type="Text" value="{worklistView>/FirstName}" />
-                        </fb:control>
-                    </fb:FilterGroupItem>
-                    <fb:FilterGroupItem groupName="searchLastName" groupTitle="Group1" name="Last Name" label="Last Name" labelTooltip="Search by last name" visibleInFilterBar="true">
-                        <fb:control>
-                            <Input type="Text" value="{worklistView>/LastName}" />
-                        </fb:control>
-                    </fb:FilterGroupItem>
-                    <fb:FilterGroupItem groupName="searchRole" groupTitle="Group1" name="Role" label="Role" labelTooltip="Search by role" visibleInFilterBar="true">
-                        <fb:control>
-                            <Input type="Text" value="{worklistView>/Role}" />
-                        </fb:control>
-                    </fb:FilterGroupItem>
-                </fb:filterGroupItems>
-            </fb:FilterBar> -->
             <Toolbar>
                 <SearchField liveChange="onSearch" width="30%" />
             </Toolbar>
-
         </semantic:headerContent>
 
 

@@ -84,26 +84,6 @@ sap.ui.define([
             history.go(-1);
         },
 
-        //TODO: combine FirstName and LastName somehow? 
-        //Filter bar search
-        // onSearch: function () {
-        //     var aFilter = [];
-        //     var sQueryFirstName = this.getModel("worklistView").getData().FirstName;
-        //     var sQueryLastName = this.getModel("worklistView").getData().LastName;
-        //     var sQueryRole = this.getModel("worklistView").getData().Role;
-        //     if (sQueryFirstName) {
-        //         aFilter.push(new Filter("FirstName", FilterOperator.Contains, sQueryFirstName));
-        //     } else if (sQueryLastName) {
-        //         aFilter.push(new Filter("LastName", FilterOperator.Contains, sQueryLastName));
-        //     } else if (sQueryRole) {
-        //         aFilter.push(new Filter("Role", FilterOperator.Contains, sQueryRole));
-        //     }
-        //     // filter binding
-        //     var oList = this.byId("employeeTable");
-        //     var oBinding = oList.getBinding("items");
-        //     oBinding.filter(aFilter);
-        // },
-
         onSearch: function (oEvent) {
 
             var sQuery = oEvent.getSource().getValue();
